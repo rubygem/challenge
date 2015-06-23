@@ -22,7 +22,7 @@ class AllTheTests < Test::Unit::TestCase
 	# 1. `PN` - Physical Notification. All rows are `PN` rows so you can ignore this field.
 	def test_read_physical_notification
 		line = CSVFile.new.lines[0]
-		physical_notification = CSV.new(line:line).physical_notification
+		physical_notification = ElectricityGeneration.new(line:line).physical_notification
 		assert_equal "PN", physical_notification
 	end
 
@@ -38,7 +38,7 @@ class AllTheTests < Test::Unit::TestCase
 	end
 end
 
-class CSV
+class ElectricityGeneration
 	def initialize line:line
 		@csv = line.split(',')
 	end
