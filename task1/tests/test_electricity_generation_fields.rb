@@ -23,6 +23,10 @@ class AllTheTests < Test::Unit::TestCase
 	def test_read_start
 		assert_equal "20110712010000", generated_electricity.started
 	end
+
+	def test_read_start_output_level
+		assert_equal "485.000", generated_electricity.start_output_level
+	end
 end
 
 class ElectricityGeneration
@@ -51,6 +55,9 @@ class ElectricityGeneration
 	end
 	
 	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
+	def start_output_level
+		@csv[4]
+	end
 	# 6. `20110712011800` - Finish date/time.
 	# 7. `300.000` - Finish output level.
 end
