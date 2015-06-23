@@ -4,7 +4,7 @@ require_relative('../src/CSVFile')
 require_relative('../src/ElectricityGeneration')
 
 
-class AllTheTests < Test::Unit::TestCase
+class TestReadCSVFields < Test::Unit::TestCase
 	def generated_electricity
 		line = CSVFile.new.lines[0]
 		ElectricityGeneration.new(line:line)
