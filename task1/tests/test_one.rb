@@ -22,7 +22,6 @@ class AllTheTests < Test::Unit::TestCase
 	# 1. `PN` - Physical Notification. All rows are `PN` rows so you can ignore this field.
 	def test_read_physical_notification
 		first_line = lines_of_csv_file[0] 
-		assert_equal "PN,T_ABTH7,5,20110712010000,485.000,20110712013000,485.000", first_line
 		csv = first_line.split(',')
 		physical_notification = csv[0]
 		assert_equal "PN", physical_notification
