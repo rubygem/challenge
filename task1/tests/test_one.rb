@@ -22,7 +22,8 @@ class AllTheTests < Test::Unit::TestCase
 	# 1. `PN` - Physical Notification. All rows are `PN` rows so you can ignore this field.
 	def test_read_physical_notification
 		line = CSVFile.new.lines[0]
-		assert_equal "PN", ElectricityGeneration.new(line:line).physical_notification
+		generated_electricity = ElectricityGeneration.new(line:line)
+		assert_equal "PN", generated_electricity.physical_notification
 	end
 
 	# 2. `T_RATS-1` - Unit id. A unique identifier for the generation unit (power station boiler, wind turbine, etc).
