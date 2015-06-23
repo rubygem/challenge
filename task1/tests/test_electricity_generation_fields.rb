@@ -3,16 +3,6 @@ require 'test/unit'
 require_relative('../src/CSVFile')
 
 class AllTheTests < Test::Unit::TestCase
-
-	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
-	# 6. `20110712011800` - Finish date/time.
-	# 7. `300.000` - Finish output level.
-
-	# In this directory, you will find a file called `tib_messages_FPN.2011-07-12.gz`. When you extract it, you'll get a CSV file. The file contains raw data about UK electricity generation on 12th July 2011. A single row looks something like this:
-	# 	```
-	# 	PN,T_RATS-1,5,20110712010000,475.000,20110712011800,300.000
-	# 	```
-
 	def generated_electricity
 		line = CSVFile.new.lines[0]
 		ElectricityGeneration.new(line:line)
@@ -59,4 +49,8 @@ class ElectricityGeneration
 	def started
 		@csv[3]
 	end
+	
+	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
+	# 6. `20110712011800` - Finish date/time.
+	# 7. `300.000` - Finish output level.
 end
