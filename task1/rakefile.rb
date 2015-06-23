@@ -20,7 +20,7 @@ task :git => :ruby_dependencies do
 	message = ENV['m']
 	raise 'no commit message specified' if message.nil?
 	git = GitRepository.new
-	git.pull
+	# git.pull
 	git.add({:options => '-A'})
 	git.commit(message: message )
 	# git.push
