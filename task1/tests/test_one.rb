@@ -38,13 +38,13 @@ class AllTheTests < Test::Unit::TestCase
 end
 
 class CSVFile
-	def lines 
-		csv = File.read(csv_file)
-		new_lines = /\r?\n/
-		csv.split(new_lines)
+	def initialize location:"../../data", file_name:"tib_messages_FPN.2011-07-12"
+		@csv_file = File.expand_path("#{location}/#{file_name}", __FILE__)
 	end
 
-	def csv_file location:"../../data", file_name:"tib_messages_FPN.2011-07-12"
-		File.expand_path("#{location}/#{file_name}", __FILE__)
+	def lines 
+		csv = File.read(@csv_file)
+		new_lines = /\r?\n/
+		csv.split(new_lines)
 	end
 end
