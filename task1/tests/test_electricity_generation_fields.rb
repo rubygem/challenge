@@ -4,7 +4,6 @@ require_relative('../src/CSVFile')
 
 class AllTheTests < Test::Unit::TestCase
 
-	# 4. `20110712010000` - Start date/time.
 	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
 	# 6. `20110712011800` - Finish date/time.
 	# 7. `300.000` - Finish output level.
@@ -30,6 +29,10 @@ class AllTheTests < Test::Unit::TestCase
 	def test_read_settlement_period
 		assert_equal "5", generated_electricity.settlement_period
 	end
+
+	def test_read_start
+		assert_equal "20110712010000", generated_electricity.started
+	end
 end
 
 class ElectricityGeneration
@@ -50,5 +53,10 @@ class ElectricityGeneration
 	# 3. `5` - The "settlement period". You can ignore this field.
 	def settlement_period
 		@csv[2]
+	end
+	
+	# 4. `20110712010000` - Start date/time.
+	def started
+		@csv[3]
 	end
 end
