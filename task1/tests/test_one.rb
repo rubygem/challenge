@@ -37,11 +37,11 @@ class AllTheTests < Test::Unit::TestCase
 	end
 
 	def lines_of_csv_file 
-		electricity_generation = File.read(csv_file)
+		electricity_generation = File.read(csv_file location:"../../data", file_name:"tib_messages_FPN.2011-07-12")
 		electricity_generation.split(/\r?\n/)
 	end
 
-	def csv_file location:"../../data", file_name:"tib_messages_FPN.2011-07-12"
+	def csv_file location:, file_name:
 		File.expand_path("#{location}/#{file_name}", __FILE__)
 	end
 end
