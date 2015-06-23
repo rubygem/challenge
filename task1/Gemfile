@@ -1,0 +1,9 @@
+ruby '2.2.0'
+source 'https://rubygems.org'
+
+gem 'rake'
+
+group :development do
+	gem 'git_repository'
+	gem 'test-unit'
+end
