@@ -8,5 +8,8 @@ class AllTheTests < Test::Unit::TestCase
 		lines_of_csv_file = electricity_generation.split(/\r?\n/)
 		first_line = lines_of_csv_file[0] 
 		assert_equal "PN,T_ABTH7,5,20110712010000,485.000,20110712013000,485.000", first_line
+		csv = first_line.split(',')
+		assert_equal "PN", csv[0]
+
 	end
 end
