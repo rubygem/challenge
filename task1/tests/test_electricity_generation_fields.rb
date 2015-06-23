@@ -32,7 +32,7 @@ class AllTheTests < Test::Unit::TestCase
 		assert_equal "485.000", generated_electricity.start_output_level
 	end
 
-	def test_read_start_output_level
+	def test_read_finished_output_level
 		assert_equal "485.000", generated_electricity.finished_output_level
 	end
 end
