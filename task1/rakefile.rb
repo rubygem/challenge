@@ -23,7 +23,7 @@ task :git => :ruby_dependencies do
 	git.pull
 	git.add({:options => '-A'})
 	git.commit(message: message )
-	git.push
+	# git.push
 end
 
 def rake_sh(command)
