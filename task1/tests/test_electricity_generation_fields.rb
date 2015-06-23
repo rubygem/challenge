@@ -4,7 +4,6 @@ require_relative('../src/CSVFile')
 
 class AllTheTests < Test::Unit::TestCase
 
-	# 3. `5` - The "settlement period". You can ignore this field.
 	# 4. `20110712010000` - Start date/time.
 	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
 	# 6. `20110712011800` - Finish date/time.
@@ -15,19 +14,23 @@ class AllTheTests < Test::Unit::TestCase
 	# 	PN,T_RATS-1,5,20110712010000,475.000,20110712011800,300.000
 	# 	```
 
-	def line
-		CSVFile.new.lines[0]
+	def generated_electricity
+		line = CSVFile.new.lines[0]
+		ElectricityGeneration.new(line:line)
 	end
 
 	def test_read_physical_notification
-		generated_electricity = ElectricityGeneration.new(line:line)
 		assert_equal "PN", generated_electricity.physical_notification
 	end
 
 	def test_read_unit_id
-		generated_electricity = ElectricityGeneration.new(line:line)
 		assert_equal "T_ABTH7", generated_electricity.unit_id
 	end
+
+	# def test_read_settlement_period
+	# 	generated_electricity = ElectricityGeneration.new(line:line)
+	# 	assert_equal "T_ABTH7", generated_electricity.settlement_period
+	# end
 end
 
 class ElectricityGeneration
@@ -45,4 +48,5 @@ class ElectricityGeneration
 		@csv[1]
 	end
 
+	# 3. `5` - The "settlement period". You can ignore this field.
 end
