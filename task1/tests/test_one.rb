@@ -29,6 +29,7 @@ class AllTheTests < Test::Unit::TestCase
 	# 2. `T_RATS-1` - Unit id. A unique identifier for the generation unit (power station boiler, wind turbine, etc).
 	def test_read_unit_id
 		line = CSVFile.new.lines[0]
+		generated_electricity = ElectricityGeneration.new(line:line)
 		unit_id = csv(line:line)[1]
 		assert_equal "T_ABTH7", unit_id
 	end
