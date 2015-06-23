@@ -3,7 +3,6 @@ require 'test/unit'
 
 class AllTheTests < Test::Unit::TestCase
 
-	# 2. `T_RATS-1` - Unit id. A unique identifier for the generation unit (power station boiler, wind turbine, etc).
 	# 3. `5` - The "settlement period". You can ignore this field.
 	# 4. `20110712010000` - Start date/time.
 	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
@@ -26,6 +25,15 @@ class AllTheTests < Test::Unit::TestCase
 		physical_notification = csv[0]
 		assert_equal "PN", physical_notification
 	end
+
+	# 2. `T_RATS-1` - Unit id. A unique identifier for the generation unit (power station boiler, wind turbine, etc).
+	def test_read_unit_id
+		first_line = lines_of_csv_file[0] 
+		csv = first_line.split(',')
+		unit_id = csv[1]
+		assert_equal "T_ABTH7", unit_id
+	end
+
 
 	def lines_of_csv_file 
 		electricity_generation = File.read(csv_file)
