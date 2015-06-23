@@ -20,20 +20,20 @@ class AllTheTests < Test::Unit::TestCase
 
 	# 1. `PN` - Physical Notification. All rows are `PN` rows so you can ignore this field.
 	def test_read_physical_notification
-		first_line = lines_of_csv_file[0] 
-		csv = first_line.split(',')
 		physical_notification = csv[0]
 		assert_equal "PN", physical_notification
 	end
 
 	# 2. `T_RATS-1` - Unit id. A unique identifier for the generation unit (power station boiler, wind turbine, etc).
 	def test_read_unit_id
-		first_line = lines_of_csv_file[0] 
-		csv = first_line.split(',')
 		unit_id = csv[1]
 		assert_equal "T_ABTH7", unit_id
 	end
 
+	def csv
+		first_line = lines_of_csv_file[0] 
+		csv = first_line.split(',')
+	end
 
 	def lines_of_csv_file 
 		electricity_generation = File.read(csv_file)
