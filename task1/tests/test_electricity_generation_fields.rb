@@ -1,6 +1,8 @@
 require 'bundler/setup'
 require 'test/unit'
 require_relative('../src/CSVFile')
+require_relative('../src/ElectricityGeneration')
+
 
 class AllTheTests < Test::Unit::TestCase
 	def generated_electricity
