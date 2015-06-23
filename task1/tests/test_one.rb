@@ -9,7 +9,8 @@ class AllTheTests < Test::Unit::TestCase
 		first_line = lines_of_csv_file[0] 
 		assert_equal "PN,T_ABTH7,5,20110712010000,485.000,20110712013000,485.000", first_line
 		csv = first_line.split(',')
-		assert_equal "PN", csv[0]
+		physical_notification = csv[0]
+		assert_equal "PN", physical_notification
 
 	end
 end
