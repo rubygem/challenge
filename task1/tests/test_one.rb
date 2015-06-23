@@ -34,6 +34,6 @@ class AllTheTests < Test::Unit::TestCase
 	end
 
 	def csv_file 
-		File.expand_path('../../data/tib_messages_FPN.2011-07-12', __FILE__)
+		File.expand_path("../../data/tib_messages_FPN.2011-07-12", __FILE__)
 	end
 end
