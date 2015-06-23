@@ -7,7 +7,6 @@ end
 
 task :test => :set_env do
 	Dir.glob('./tests/**/*.rb').each do |test|
-		clear_db
 		rake_sh 'ruby '+ test
 	end
 end
