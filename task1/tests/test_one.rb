@@ -41,8 +41,7 @@ class AllTheTests < Test::Unit::TestCase
 		electricity_generation.split(/\r?\n/)
 	end
 
-	def csv_file location:"../../data"
-		file_name = "tib_messages_FPN.2011-07-12"
+	def csv_file location:"../../data", file_name:"tib_messages_FPN.2011-07-12"
 		File.expand_path("#{location}/#{file_name}", __FILE__)
 	end
 end
