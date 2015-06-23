@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'test/unit'
+require_relative('../src/CSVFile')
 
 class AllTheTests < Test::Unit::TestCase
 
