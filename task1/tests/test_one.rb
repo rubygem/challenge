@@ -28,8 +28,7 @@ class AllTheTests < Test::Unit::TestCase
 	def test_read_unit_id
 		line = CSVFile.new.lines[0]
 		generated_electricity = ElectricityGeneration.new(line:line)
-		unit_id = generated_electricity.unit_id
-		assert_equal "T_ABTH7", unit_id
+		assert_equal "T_ABTH7", generated_electricity.unit_id
 	end
 end
 
