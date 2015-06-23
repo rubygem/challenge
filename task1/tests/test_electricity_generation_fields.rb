@@ -27,10 +27,9 @@ class AllTheTests < Test::Unit::TestCase
 		assert_equal "T_ABTH7", generated_electricity.unit_id
 	end
 
-	# def test_read_settlement_period
-	# 	generated_electricity = ElectricityGeneration.new(line:line)
-	# 	assert_equal "T_ABTH7", generated_electricity.settlement_period
-	# end
+	def test_read_settlement_period
+		assert_equal "5", generated_electricity.settlement_period
+	end
 end
 
 class ElectricityGeneration
@@ -49,4 +48,7 @@ class ElectricityGeneration
 	end
 
 	# 3. `5` - The "settlement period". You can ignore this field.
+	def settlement_period
+		@csv[2]
+	end
 end
