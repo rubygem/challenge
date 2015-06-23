@@ -14,36 +14,26 @@ class AllTheTests < Test::Unit::TestCase
 	# 	PN,T_RATS-1,5,20110712010000,475.000,20110712011800,300.000
 	# 	```
 	def test_read_first_line
-		first_line = lines_of_csv_file[0] 
+		first_line = CSVFile.new.lines_of_csv_file[0] 
 		assert_equal "PN,T_ABTH7,5,20110712010000,485.000,20110712013000,485.000", first_line
 	end
 
 	# 1. `PN` - Physical Notification. All rows are `PN` rows so you can ignore this field.
 	def test_read_physical_notification
-		line = lines_of_csv_file[0]
+		line = CSVFile.new.lines_of_csv_file[0]
 		physical_notification = csv(line:line)[0]
 		assert_equal "PN", physical_notification
 	end
 
 	# 2. `T_RATS-1` - Unit id. A unique identifier for the generation unit (power station boiler, wind turbine, etc).
 	def test_read_unit_id
-		line = lines_of_csv_file[0]
+		line = CSVFile.new.lines_of_csv_file[0]
 		unit_id = csv(line:line)[1]
 		assert_equal "T_ABTH7", unit_id
 	end
 
 	def csv line:line
 		csv = line.split(',')
-	end
-
-	def lines_of_csv_file 
-		csv = File.read(csv_file)
-		new_lines = /\r?\n/
-		csv.split(new_lines)
-	end
-
-	def csv_file location:"../../data", file_name:"tib_messages_FPN.2011-07-12"
-		File.expand_path("#{location}/#{file_name}", __FILE__)
 	end
 end
 
