@@ -20,8 +20,12 @@ class AllTheTests < Test::Unit::TestCase
 		assert_equal "5", generated_electricity.settlement_period
 	end
 
-	def test_read_start
+	def test_read_started
 		assert_equal "20110712010000", generated_electricity.started
+	end
+
+	def test_read_finished
+		assert_equal "20110712013000", generated_electricity.finished
 	end
 
 	def test_read_start_output_level
@@ -58,6 +62,11 @@ class ElectricityGeneration
 	def start_output_level
 		@csv[4]
 	end
+	
 	# 6. `20110712011800` - Finish date/time.
+	def finished
+		@csv[5]
+	end
+
 	# 7. `300.000` - Finish output level.
 end
