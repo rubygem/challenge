@@ -17,4 +17,6 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 end
 
 class Bob
+	def initialize display:
+	end
 end
