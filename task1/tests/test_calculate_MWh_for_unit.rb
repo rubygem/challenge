@@ -21,10 +21,13 @@ class GeneratedElectricity
 	def initialize display:, electricity_generated:
 		@display = display
 		@unit_name = electricity_generated.unit_id
-		@mega_watt_hours = "300,000"
+	end
+
+	def mega_watt_hours
+		"300,000"
 	end
 
 	def calculate
-		@display.output unit_name:@unit_name, mega_watt_hours:@mega_watt_hours
+		@display.output unit_name:@unit_name, mega_watt_hours:mega_watt_hours
 	end
 end
