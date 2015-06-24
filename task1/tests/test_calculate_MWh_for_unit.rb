@@ -13,12 +13,15 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 	def test_number_of_entries_per_unit
 		total_entries = CSVFile.new.lines
 		units = []
+		converted_csv_lines = []
 		total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
+			converted_csv_lines.push electricity_generated
 			units.push({id:electricity_generated.unit_id}) unless units.include?({id:electricity_generated.unit_id})
 		end
 
 		assert_equal 826, units.count
+		assert_equal "T_ABTH7", units[0][:id]
 	end
 
 
