@@ -8,7 +8,7 @@ require_relative('../src/ElectricityGeneration')
 
 class TestReadCSVFields < Test::Unit::TestCase
 	def generated_electricity
-		line = CSVFile.new.lines[0]
+		line = CSVFile.new.lines[717]
 		ElectricityGeneration.new(line:line)
 	end
 
@@ -17,7 +17,7 @@ class TestReadCSVFields < Test::Unit::TestCase
 	end
 
 	def test_read_unit_id
-		assert_equal "T_ABTH7", generated_electricity.unit_id
+		assert_equal "T_SUTB-1", generated_electricity.unit_id
 	end
 
 	def test_read_settlement_period
@@ -29,7 +29,7 @@ class TestReadCSVFields < Test::Unit::TestCase
 	end
 
 	def test_read_finished
-		assert_equal "20110712013000", generated_electricity.finished
+		assert_equal "20110712010100", generated_electricity.finished
 	end
 
 	# def test_time
@@ -37,14 +37,14 @@ class TestReadCSVFields < Test::Unit::TestCase
 	# end
 
 	def test_power
-		assert_equal 0.0, generated_electricity.power
+		assert_equal 1.0, generated_electricity.power
 	end
 
 	def test_read_start_output_level
-		assert_equal 485.0, generated_electricity.start_output_level
+		assert_equal 373.0, generated_electricity.start_output_level
 	end
 
 	def test_read_finished_output_level
-		assert_equal 485.0, generated_electricity.finished_output_level
+		assert_equal 374.0, generated_electricity.finished_output_level
 	end
 end
