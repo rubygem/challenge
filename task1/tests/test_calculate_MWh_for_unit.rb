@@ -10,30 +10,30 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 		assert_equal total_number_of_entries, total_entries.count
 	end
 
-	def test_number_of_entries_per_unit
+	def process_total_entries
 		total_entries = CSVFile.new.lines
-		units = []
+		@units = []
 		converted_csv_lines = []
 		total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
 			converted_csv_lines.push electricity_generated
-			units.push({id:electricity_generated.unit_id}) unless units.include?({id:electricity_generated.unit_id})
+			@units.push({id:electricity_generated.unit_id}) unless @units.include?({id:electricity_generated.unit_id})
 		end
-
-		assert_equal 826, units.count
-		assert_equal "T_ABTH7", units[0][:id]
 	end
 
+	def test_number_of_entries_per_unit
+		process_total_entries
 
-	def test_mega_watt_hours
-		entries_for_unit = 0
-		total_entries = CSVFile.new.lines
-		total_entries.each do |line|
-			electricity_generated = ElectricityGeneration.new(line:line)
-			if electricity_generated.unit_id.eql? "T_ABTH7" 
-				entries_for_unit =+ 1
-			end
-		end
-		assert_equal entries_for_unit, 1
+		assert_equal 826, @units.count
+		assert_equal "T_ABTH7", @units[0][:id]
+
+		# units.each do |unit|
+		# 	entries_for_this_unit = converted_csv_lines.select do |electricity_generated| 
+		# 		electricity_generated.unit_id.eql? unit[:id] 
+		# 	end
+		# 	unit[:entries] = entries_for_this_unit
+		# end
+
+		# assert_equal 826, units[0][:entries].count
 	end
 end
