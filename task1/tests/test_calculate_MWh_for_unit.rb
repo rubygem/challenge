@@ -33,8 +33,12 @@ class Bob
 		@total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
 			@electricity_generated_this_day.push electricity_generated
-			@units.push({id:electricity_generated.unit_id}) unless @units.include?({id:electricity_generated.unit_id})
+			add_unit id:electricity_generated.unit_id
 		end
+	end
+
+	def add_unit id:
+		@units.push({id:id}) unless @units.include?({id:id})
 	end
 
 	def process
