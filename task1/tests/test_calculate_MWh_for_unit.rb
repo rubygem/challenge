@@ -6,7 +6,7 @@ require_relative('../src/ElectricityGeneration')
 
 class TestCalculateMegaWattHours < Test::Unit::TestCase
 	def test_number_of_entries_per_unit
-		units = Bob.new(total_entries:CSVFile.new.lines).units
+		units = Units.new(total_entries:CSVFile.new.lines).to_array
 
 		assert_equal 826, units.count
 		sorted = units.sort_by do |unit|
@@ -21,7 +21,7 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 	end
 end
 
-class Bob
+class Units
 	def initialize total_entries:
 		@units = []
 		@electricity_generated_this_day = []
@@ -49,7 +49,7 @@ class Bob
 		@units.push({id:id}) unless @units.include?({id:id})
 	end
 
-	def units
+	def to_array
 		@units
 	end
 end
