@@ -6,7 +6,7 @@ require_relative('../src/ElectricityGeneration')
 
 class TestCalculateMegaWattHours < Test::Unit::TestCase
 	def test_number_of_entries_per_unit
-		units = Bob.new.process(total_entries:CSVFile.new.lines)
+		units = Bob.new(total_entries:CSVFile.new.lines).process
 
 		assert_equal 826, units.count
 		sorted = units.sort_by do |unit|
@@ -22,11 +22,14 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 end
 
 class Bob
-	def process total_entries:
+	def initialize total_entries:
+		@total_entries = total_entries
+	end
+	def process
 		units = []
 		electricity_generated_this_day = []
 		#parallel each here actually increases the time to 50 seconds from 17
-		total_entries.each do |line|
+		@total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
 			electricity_generated_this_day.push electricity_generated
 			units.push({id:electricity_generated.unit_id}) unless units.include?({id:electricity_generated.unit_id})
