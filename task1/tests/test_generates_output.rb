@@ -21,7 +21,7 @@ class GeneratedElectricity
 	def initialize display:, unit:
 		@display = display
 		@unit_name = unit[:id]
-		@mega_watt_hours = 300000
+		@mega_watt_hours = unit[:mega_watt_hours]
 	end
 
 	def mega_watt_hours

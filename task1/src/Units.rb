@@ -14,6 +14,7 @@ class Units
 			unit[:entries] = @electricity_generated_this_day.select do |electricity_generated| 
 				electricity_generated.unit_id.eql? unit[:id] 
 			end
+			unit[:mega_watt_hours] = 300000
 		end
 	end
 
