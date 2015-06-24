@@ -9,7 +9,7 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 		generated_electricity = ElectricityGeneration.new(line:line)
 		bob = Bob.new display:self, generated_electricity:generated_electricity
 		bob.calculate
-		assert_equal @output, "T_RATS-1:     300,000 MWh"
+		assert_equal @output, "T_ABTH7:     300,000 MWh"
 	end
 
 	def output unit_name:, mega_watt_hours:
@@ -20,7 +20,7 @@ end
 class Bob
 	def initialize display:, generated_electricity:
 		@display = display
-		@unit_name = "T_RATS-1"
+		@unit_name = generated_electricity.unit_id
 		@mega_watt_hours = "300,000"
 	end
 
