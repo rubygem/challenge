@@ -13,11 +13,18 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 	def process_total_entries
 		total_entries = CSVFile.new.lines
 		@units = []
-		@electricity_generated_this_day = []
+		electricity_generated_this_day = []
 		total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
-			@electricity_generated_this_day.push electricity_generated
+			electricity_generated_this_day.push electricity_generated
 			@units.push({id:electricity_generated.unit_id}) unless @units.include?({id:electricity_generated.unit_id})
+		end
+
+		@units.each do |unit|
+			entries_for_this_unit = electricity_generated_this_day.select do |electricity_generated| 
+				electricity_generated.unit_id.eql? unit[:id] 
+			end
+			unit[:entries] = entries_for_this_unit
 		end
 	end
 
@@ -26,13 +33,6 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 
 		assert_equal 826, @units.count
 		assert_equal "T_ABTH7", @units[0][:id]
-
-		@units.each do |unit|
-			entries_for_this_unit = @electricity_generated_this_day.select do |electricity_generated| 
-				electricity_generated.unit_id.eql? unit[:id] 
-			end
-			unit[:entries] = entries_for_this_unit
-		end
 
 		assert_equal 52, @units[0][:entries].count
 	end
