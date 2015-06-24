@@ -6,8 +6,8 @@ require_relative('../src/ElectricityGeneration')
 class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 	def test_generated_electricity
 		line = CSVFile.new.lines[0]
-		ElectricityGeneration.new(line:line)
-		bob = Bob.new display:self
+		generated_electricity = ElectricityGeneration.new(line:line)
+		bob = Bob.new display:self, generated_electricity:generated_electricity
 		bob.calculate
 		assert_equal @output, "T_RATS-1:     300,000 MWh"
 	end
@@ -18,7 +18,7 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 end
 
 class Bob
-	def initialize display:
+	def initialize display:, generated_electricity:
 		@display = display
 		@unit_name = "T_RATS-1"
 		@mega_watt_hours = "300,000"
