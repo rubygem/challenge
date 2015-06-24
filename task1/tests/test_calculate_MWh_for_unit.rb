@@ -25,18 +25,18 @@ class Bob
 	def initialize total_entries:
 		@total_entries = total_entries
 		@units = []
+		@electricity_generated_this_day = []
 	end
 	def process
-		electricity_generated_this_day = []
 		#parallel each here actually increases the time to 50 seconds from 17
 		@total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
-			electricity_generated_this_day.push electricity_generated
+			@electricity_generated_this_day.push electricity_generated
 			@units.push({id:electricity_generated.unit_id}) unless @units.include?({id:electricity_generated.unit_id})
 		end
 
 		@units.peach do |unit|
-			unit[:entries] = electricity_generated_this_day.select do |electricity_generated| 
+			unit[:entries] = @electricity_generated_this_day.select do |electricity_generated| 
 				electricity_generated.unit_id.eql? unit[:id] 
 			end
 		end
