@@ -7,8 +7,8 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 	def test_generated_electricity
 		line = CSVFile.new.lines[0]
 		ElectricityGeneration.new(line:line)
-		Bob.new display:self
-		output unit_name:"T_RATS-1", mega_watt_hours:"300,000"
+		bob = Bob.new display:self
+		bob.calculate
 		assert_equal @output, "T_RATS-1:     300,000 MWh"
 	end
 
@@ -19,5 +19,11 @@ end
 
 class Bob
 	def initialize display:
+		@display = display
 	end
+
+	def calculate
+		@display.output unit_name:"T_RATS-1", mega_watt_hours:"300,000"
+	end
+
 end
