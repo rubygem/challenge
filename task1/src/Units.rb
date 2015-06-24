@@ -42,7 +42,11 @@ end
 
 class MegaWattHours
 	def initialize entries_for_unit:
-		@entries_for_unit = entries_for_unit
+		entries_for_unit = entries_for_unit
+		usage_and_time = [] 
+		entries_for_unit.each do |entry|
+			# usage_and_time.push {time:entry.time, power:entry.power}
+		end 
 	end
 
 	def calculate

@@ -3,6 +3,8 @@ require 'test/unit'
 require_relative('../src/CSVFile')
 require_relative('../src/ElectricityGeneration')
 
+#line 718
+#PN,T_SUTB-1,5,20110712010000,373.000,20110712010100,374.000
 
 class TestReadCSVFields < Test::Unit::TestCase
 	def generated_electricity
@@ -30,11 +32,19 @@ class TestReadCSVFields < Test::Unit::TestCase
 		assert_equal "20110712013000", generated_electricity.finished
 	end
 
+	# def test_time
+	# 	assert_equal "100", generated_electricity.time
+	# end
+
+	def test_power
+		assert_equal 0.0, generated_electricity.power
+	end
+
 	def test_read_start_output_level
-		assert_equal "485.000", generated_electricity.start_output_level
+		assert_equal 485.0, generated_electricity.start_output_level
 	end
 
 	def test_read_finished_output_level
-		assert_equal "485.000", generated_electricity.finished_output_level
+		assert_equal 485.0, generated_electricity.finished_output_level
 	end
 end

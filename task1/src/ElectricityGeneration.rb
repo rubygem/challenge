@@ -25,7 +25,7 @@ class ElectricityGeneration
 	
 	# 5. `475.000` - Start output level, in MW ([Megawatts](http://en.wikipedia.org/wiki/Megawatt#Megawatt))
 	def start_output_level
-		@csv[4]
+		@csv[4].to_f
 	end
 	
 	# 6. `20110712011800` - Finish date/time.
@@ -35,7 +35,15 @@ class ElectricityGeneration
 
 	# 7. `300.000` - Finish output level.
 	def finished_output_level
-		@csv[6]
+		@csv[6].to_f
+	end
+
+	def power
+		finished_output_level - start_output_level
+	end
+
+	def time
+		finished - started
 	end
 
 	#*NOTE*: The `.` indicates a decimal point, not a thousands separator. So 300.000 is 300 MW, not 300000 MW.
