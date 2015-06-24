@@ -11,7 +11,7 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 		assert_equal @output, "T_RATS-1:     300,000 MWh"
 	end
 
-	def output unit_name:, mega_watt_hours:"300,000"
+	def output unit_name:, mega_watt_hours:
 		@output = "#{unit_name}:     #{mega_watt_hours} MWh"
 	end
 end
