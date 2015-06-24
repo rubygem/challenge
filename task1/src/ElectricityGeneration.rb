@@ -37,4 +37,6 @@ class ElectricityGeneration
 	def finished_output_level
 		@csv[6]
 	end
+
+	#*NOTE*: The `.` indicates a decimal point, not a thousands separator. So 300.000 is 300 MW, not 300000 MW.
 end
