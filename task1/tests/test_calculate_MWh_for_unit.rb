@@ -10,8 +10,7 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 		assert_equal total_number_of_entries, total_entries.count
 	end
 
-	def process_total_entries
-		total_entries = CSVFile.new.lines
+	def process total_entries:CSVFile.new.lines
 		@units = []
 		electricity_generated_this_day = []
 		total_entries.each do |line|
@@ -29,7 +28,7 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 	end
 
 	def test_number_of_entries_per_unit
-		process_total_entries
+		process
 
 		assert_equal 826, @units.count
 		assert_equal "T_ABTH7", @units[0][:id]
