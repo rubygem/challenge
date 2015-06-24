@@ -1,4 +1,5 @@
 require_relative('ElectricityGeneration')
+require 'peach'
 
 class Units
 	def initialize total_entries:

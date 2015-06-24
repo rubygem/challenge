@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require 'test/unit'
-require 'peach'
 require_relative('../src/CSVFile')
 require_relative('../src/Units')
 
