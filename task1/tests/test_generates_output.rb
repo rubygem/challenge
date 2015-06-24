@@ -21,10 +21,17 @@ class GeneratedElectricity
 	def initialize display:, unit:
 		@display = display
 		@unit_name = unit[:id]
+		@mega_watt_hours = 300000
 	end
 
 	def mega_watt_hours
-		"300,000"
+		comma_numbers(number:@mega_watt_hours)
+	end
+
+	#stolen from http://www.misuse.org/science/2008/03/27/converting-numbers-or-currency-to-comma-delimited-format-with-ruby-regex/
+	def comma_numbers(number:)
+		delimiter = ','
+		number.to_s.reverse.gsub(%r{([0-9]{3}(?=([0-9])))}, "\\1#{delimiter}").reverse
 	end
 
 	def calculate
