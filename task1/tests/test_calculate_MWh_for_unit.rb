@@ -5,20 +5,20 @@ require_relative('../src/CSVFile')
 require_relative('../src/ElectricityGeneration')
 
 class TestCalculateMegaWattHours < Test::Unit::TestCase
-	def process total_entries:CSVFile.new.lines
+	def process total_entries:
 		@units = []
 		electricity_generated_this_day = []
+		#parallel each here actually increases the time to 50 seconds from 17
 		total_entries.each do |line|
 			electricity_generated = ElectricityGeneration.new(line:line)
 			electricity_generated_this_day.push electricity_generated
 			@units.push({id:electricity_generated.unit_id}) unless @units.include?({id:electricity_generated.unit_id})
 		end
 
-		@units.each do |unit|
-			entries_for_this_unit = electricity_generated_this_day.select do |electricity_generated| 
+		@units.peach do |unit|
+			unit[:entries] = electricity_generated_this_day.select do |electricity_generated| 
 				electricity_generated.unit_id.eql? unit[:id] 
 			end
-			unit[:entries] = entries_for_this_unit
 		end
 	end
 
@@ -26,8 +26,14 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 		process total_entries:CSVFile.new.lines
 
 		assert_equal 826, @units.count
-		assert_equal "T_ABTH7", @units[0][:id]
+		sorted = @units.sort_by do |unit|
+			unit[:id]
+		end
 
-		assert_equal 52, @units[0][:entries].count
+		first_entry = sorted[0]
+
+		assert_equal "2__ABGAS000", first_entry[:id]
+
+		assert_equal 48, first_entry[:entries].count
 	end
 end
