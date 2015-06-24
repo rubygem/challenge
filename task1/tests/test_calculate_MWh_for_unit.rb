@@ -21,9 +21,10 @@ class Bob
 	def initialize display:
 		@display = display
 		@unit_name = "T_RATS-1"
+		@mega_watt_hours = "300,000"
 	end
 
 	def calculate
-		@display.output unit_name:@unit_name, mega_watt_hours:"300,000"
+		@display.output unit_name:@unit_name, mega_watt_hours:@mega_watt_hours
 	end
 end
