@@ -4,12 +4,6 @@ require_relative('../src/CSVFile')
 require_relative('../src/ElectricityGeneration')
 
 class TestCalculateMegaWattHours < Test::Unit::TestCase
-	def test_total_number_of_entries_in_file
-		total_entries = CSVFile.new.lines
-		total_number_of_entries = 40947
-		assert_equal total_number_of_entries, total_entries.count
-	end
-
 	def process total_entries:CSVFile.new.lines
 		@units = []
 		electricity_generated_this_day = []
@@ -28,7 +22,7 @@ class TestCalculateMegaWattHours < Test::Unit::TestCase
 	end
 
 	def test_number_of_entries_per_unit
-		process
+		process total_entries:CSVFile.new.lines
 
 		assert_equal 826, @units.count
 		assert_equal "T_ABTH7", @units[0][:id]
