@@ -15,3 +15,6 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 		@output = "#{unit_name}:     #{mega_watt_hours} MWh"
 	end
 end
+
+class Bob
+end
