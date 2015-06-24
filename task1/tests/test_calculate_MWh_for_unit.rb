@@ -17,6 +17,15 @@ class TestCalculateGeneratedElectricity < Test::Unit::TestCase
 	end
 end
 
+class TestCalculateMegaWattHours < Test::Unit::TestCase
+	def test_mega_watt_hours
+		line = CSVFile.new.lines[0]
+		electricity_generated = ElectricityGeneration.new(line:line)
+		mega_watt_hours = 300000
+		assert_equal mega_watt_hours, 300000
+	end
+end
+
 class GeneratedElectricity
 	def initialize display:, electricity_generated:
 		@display = display
