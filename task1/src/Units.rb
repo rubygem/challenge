@@ -11,12 +11,13 @@ class Units
 
 	def process_entries
 		@units.peach do |unit|
-			unit[:entries] = entries(id:unit[:id])
-			unit[:mega_watt_hours] = 300000
+			entries = entries_for_unit id:unit[:id]
+			unit[:entries] = entries
+			unit[:mega_watt_hours] = MegaWattHours.new(entries_for_unit:entries).calculate
 		end
 	end
 
-	def entries id:
+	def entries_for_unit id:
 		@electricity_generated_this_day.select do |electricity_generated| 
 			electricity_generated.unit_id.eql? id 
 		end
@@ -36,5 +37,15 @@ class Units
 
 	def to_array
 		@units
+	end
+end
+
+class MegaWattHours
+	def initialize entries_for_unit:
+		@entries_for_unit = entries_for_unit
+	end
+
+	def calculate
+		300000
 	end
 end
