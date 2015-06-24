@@ -26,6 +26,15 @@ class Bob
 		@units = []
 		@electricity_generated_this_day = []
 		process total_entries:total_entries
+		process_entries
+	end
+
+	def process_entries
+		@units.peach do |unit|
+			unit[:entries] = @electricity_generated_this_day.select do |electricity_generated| 
+				electricity_generated.unit_id.eql? unit[:id] 
+			end
+		end
 	end
 
 	def process total_entries:
@@ -41,13 +50,6 @@ class Bob
 	end
 
 	def units
-		#parallel each here actually increases the time to 50 seconds from 17
-		@units.peach do |unit|
-			unit[:entries] = @electricity_generated_this_day.select do |electricity_generated| 
-				electricity_generated.unit_id.eql? unit[:id] 
-			end
-		end
-
 		@units
 	end
 end
